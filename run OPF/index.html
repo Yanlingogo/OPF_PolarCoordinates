@@ -6,13 +6,13 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Documentation for Polar coordinates">
+        <meta name="description" content="Documentation for rectangular coordinates">
       
       
         <meta name="author" content="Yanlin Jiang">
       
       
-        <link rel="canonical" href="https://kit-iai.github.io/Polar/run%20OPF/">
+        <link rel="canonical" href="https://kit-iai.github.io/rec/run%20OPF/">
       
       
         <link rel="prev" href="../Problem%20formulation/">
@@ -25,7 +25,7 @@
     
     
       
-        <title>Run OPF - OPF in Polarcoordinats</title>
+        <title>Run OPF - OPF in Rectangular Coordinats</title>
       
     
     
@@ -45,7 +45,7 @@
       
     
     
-      <link rel="stylesheet" href="../extra.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css">
     
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -68,6 +68,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#run-opf" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -80,7 +85,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="OPF in Polarcoordinats" class="md-header__button md-logo" aria-label="OPF in Polarcoordinats" data-md-component="logo">
+    <a href=".." title="OPF in Rectangular Coordinats" class="md-header__button md-logo" aria-label="OPF in Rectangular Coordinats" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -93,7 +98,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            OPF in Polarcoordinats
+            OPF in Rectangular Coordinats
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -166,13 +171,13 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="OPF in Polarcoordinats" class="md-nav__button md-logo" aria-label="OPF in Polarcoordinats" data-md-component="logo">
+    <a href=".." title="OPF in Rectangular Coordinats" class="md-nav__button md-logo" aria-label="OPF in Rectangular Coordinats" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
 
     </a>
-    OPF in Polarcoordinats
+    OPF in Rectangular Coordinats
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -206,10 +211,98 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Run OPF
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         Run OPF
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#create-index-for-buses-branches-generators" class="md-nav__link">
+    create index for buses, branches, generators
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#set-parameters-for-the-constraints" class="md-nav__link">
+    set parameters for the constraints
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#set-the-objective-function" class="md-nav__link">
+    set the objective function
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#equality-and-inequality-constraints" class="md-nav__link">
+    equality and inequality constraints
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference-solution" class="md-nav__link">
+    reference solution
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solve-the-problem-by-casadi" class="md-nav__link">
+    Solve the Problem by CasADi
+  </a>
+  
+    <nav class="md-nav" aria-label="Solve the Problem by CasADi">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setting-problem" class="md-nav__link">
+    Setting Problem
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#results" class="md-nav__link">
+    Results
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -247,6 +340,78 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#create-index-for-buses-branches-generators" class="md-nav__link">
+    create index for buses, branches, generators
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#set-parameters-for-the-constraints" class="md-nav__link">
+    set parameters for the constraints
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#set-the-objective-function" class="md-nav__link">
+    set the objective function
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#equality-and-inequality-constraints" class="md-nav__link">
+    equality and inequality constraints
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference-solution" class="md-nav__link">
+    reference solution
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solve-the-problem-by-casadi" class="md-nav__link">
+    Solve the Problem by CasADi
+  </a>
+  
+    <nav class="md-nav" aria-label="Solve the Problem by CasADi">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setting-problem" class="md-nav__link">
+    Setting Problem
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#results" class="md-nav__link">
+    Results
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -261,9 +426,92 @@
                   
 
 
-  <h1>Run OPF</h1>
+<h1 id="run-opf">Run OPF</h1>
+<p>In this example, the case14 will be solved by Matpower and CasADi, and the feasibility of CasADi's solution will be verified by comparing the results of the them.</p>
+<h2 id="create-index-for-buses-branches-generators">create index for buses, branches, generators</h2>
+<p>In order to use casadi to solve OPF, the data format of matpower should be exported firstly.idx_
+entries_pf(1,2,3,4) variables, which should be optimizied. </p>
+<h2 id="set-parameters-for-the-constraints">set parameters for the constraints</h2>
+<p>Set baseMVA, calculation uses per unit value
+cost_param<br />
+Vmax,Vmin<br />
+Pgmax,Pgmin<br />
+Qgmax,Qgmin<br />
+Fmax<br />
+Pd, Qd: demand<br />
+Cg: Sparse matrix, indicating the connection between the unit and the node, 1 means there is a connection
+initial state:</p>
+<h2 id="set-the-objective-function">set the objective function</h2>
+<p>$$f=\sum_{i\in G}^{}(c_{1,i}\cdot P_i+c_{2,i}\cdot P_i^2)$$
+the parameters $c_{1,i}$ and $c_{2,i}$ are from the Date of 'case14'</p>
+<h2 id="equality-and-inequality-constraints">equality and inequality constraints</h2>
+<p>According to the parameters set before, equality constraints and inequality constraints can be written.</p>
+<p>Slack Bus: At the slack bus, or swing bus, the voltage magnitude and angle are fixed and the power injections are free.The purpose of the slack bus is twofold.First,itprovidesavoltage reference (typically $U$ = 1.0 p.u. and $W$ = 0)suchthat the remaining bus voltages are uniquely determined; we explain the per unit system “p.u.” in Appendix C.Second,asitisthe only bus at which real power is free to vary, the slack bus is required to ensure that the power flow equations have a feasible solution. There is only one slack bus in a power system model.</p>
+<p>power flow equation:
+The balance of active power therefore remains as a equality constraint.For any node, the sum of fed power, output power and node power demand is zero.
+$$P =W\circ(G_{\textrm bus}\cdot W+B_{\textrm bus}\cdot U) + U \circ (G_{\textrm bus}\cdot U -B_{\textrm bus}\cdot W)+ P_d - C_g\cdot P_g$$
+$$Q =W\circ(G_{\textrm bus}\cdot U-B_{\textrm bus}\cdot W) - U \circ (G_{\textrm bus}\cdot W +B_{\textrm bus}\cdot U)+ P_d - C_g\cdot Q_g$$
+'$\circ$' means'.*' in matlab, multiplies arrays A and B by multiplying corresponding elements together. A and B must be the same or compatible in size.</p>
+<p>upper and lower bound for voltage magnitude was given before.</p>
+<p>Line limit:
+Technically, the power transmitted by the line should be less than the power limit of the line. In this example, in order to simplify the problem, the power limit of the cable is not considered.</p>
+<h2 id="reference-solution">reference solution</h2>
+<p>Use matpower to calculate the case and view the calculation results(Vr,Vi,Pg,Qg).</p>
+<p>For the details about the <kbd>mpoption</kbd> please refer to <a href="https://matpower.org/docs/MATPOWER-manual.pdf">MATPOWER Documentation</a></p>
+<h2 id="solve-the-problem-by-casadi">Solve the Problem by CasADi</h2>
+<h3 id="setting-problem">Setting Problem</h3>
+<ul>
+<li>Get the dimensions of a variable</li>
+<li>Create the new variables <kbd>x_SX</kbd> by using <kbd>SX.sym</kbd></li>
+<li>Set the objective function and constraints, please refer to problem formulation</li>
+<li>Set the tolerance, For the details about the <kbd>mpoption</kbd> please refer to <a href="https://casadi.sourceforge.net/v2.0.0/api/html/d6/d07/classcasadi_1_1NlpSolver.html#plugin_NlpSolver_ipopt">CasADi Documentation</a></li>
+</ul>
+<!--tol = 1e-8;：设置收敛容忍度（tolerance）。
 
+options.ipopt.tol = tol;：设置 IPOPT 求解器的容忍度。
 
+options.ipopt.constr_viol_tol = tol;：设置 IPOPT 求解器的约束违反容忍度。
+
+options.ipopt.compl_inf_tol = tol;：设置 IPOPT 求解器的互补不变量容忍度。
+
+options.ipopt.acceptable_tol = tol;：设置 IPOPT 求解器的可接受容忍度。
+
+options.ipopt.acceptable_constr_viol_tol = tol;：设置 IPOPT 求解器的可接受约束违反容忍度。
+
+options.ipopt.print_level = 5;：设置 IPOPT 求解器的打印级别，用于显示求解过程的详细信息。
+
+options.print_time = 5;：每隔 5 秒打印一次求解器的运行时间。
+
+options.ipopt.max_iter = 1000;：设置 IPOPT 求解器的最大迭代次数。-->
+<ul>
+<li>Solve the Problem by using <kbd>nplsol</kbd></li>
+</ul>
+<h3 id="results">Results</h3>
+<p><kbd>sol</kbd> is assigned to retrieve optimized results. The result 'x' of the solution includes the voltage of the node in rectangular coordinates and the apparent power. Lagrangian multipliers for different constraints are also given. </p>
+<p>Download and run it to view the calculation results. </p>
+<!-- sol = S('x0', x0, 'lbg', lbg, 'ubg', ubg, 'lbx', lbx, 'ubx', ubx);：使用求解器 S 对优化问题进行求解，其中 'x0', x0 表示初始点，'lbg', lbg 和 'ubg', ubg 表示约束的下界和上界，'lbx', lbx 和 'ubx', ubx 表示变量的下界和上界。
+
+xopt = full(sol.x);：提取求解结果中的变量 x。
+
+lam_volt = full(sol.lam_g(1:Nbus));：提取求解结果中的电压约束的 Lagrange 乘子。
+
+lam_line = full(sol.lam_g((1:Nlimit)+Nbus));：提取求解结果中的线路约束的 Lagrange 乘子。
+
+lam_eq = full(sol.lam_g((1:Nbus*2)+Nbus+Nlimit));：提取求解结果中的等式约束的 Lagrange 乘子。
+
+lam_volt(lam_volt < 1e-10) = 0;：将小于阈值的电压约束的 Lagrange 乘子设置为零。
+
+lam = full(sol.lam_g);：提取求解结果中的所有约束的 Lagrange 乘子。
+
+Nlam = numel(lam);：计算约束的 Lagrange 乘子的数量。
+
+fval = full(sol.f);：提取求解结果中的目标函数值。
+
+error = norm(xref - xopt, inf);：计算求解结果与参考解 xref 之间的误差。
+
+u = xopt(entries_pf{1});：从求解结果中提取特定索引 entries_pf{1} 的变量。
+
+w = xopt(entries_pf{2});：从求解结果中提取特定索引 entries_pf{2} 的变量。-->
 
 
 
@@ -307,7 +555,15 @@
       <script src="../assets/javascripts/bundle.220ee61c.min.js"></script>
       
         
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+          <script src="../javascripts/katex.js"></script>
+        
+      
+        
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js"></script>
+        
+      
+        
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js"></script>
         
       
     

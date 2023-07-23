@@ -6,13 +6,13 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Documentation for Polar coordinates">
+        <meta name="description" content="Documentation for rectangular coordinates">
       
       
         <meta name="author" content="Yanlin Jiang">
       
       
-        <link rel="canonical" href="https://kit-iai.github.io/Polar/Problem%20formulation/">
+        <link rel="canonical" href="https://kit-iai.github.io/rec/Problem%20formulation/">
       
       
       
@@ -23,7 +23,7 @@
     
     
       
-        <title>Problem Formulation - OPF in Polarcoordinats</title>
+        <title>Problem Formulation - OPF in Rectangular Coordinats</title>
       
     
     
@@ -43,7 +43,7 @@
       
     
     
-      <link rel="stylesheet" href="../extra.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css">
     
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -78,7 +78,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="OPF in Polarcoordinats" class="md-header__button md-logo" aria-label="OPF in Polarcoordinats" data-md-component="logo">
+    <a href=".." title="OPF in Rectangular Coordinats" class="md-header__button md-logo" aria-label="OPF in Rectangular Coordinats" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -91,7 +91,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            OPF in Polarcoordinats
+            OPF in Rectangular Coordinats
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -164,13 +164,13 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="OPF in Polarcoordinats" class="md-nav__button md-logo" aria-label="OPF in Polarcoordinats" data-md-component="logo">
+    <a href=".." title="OPF in Rectangular Coordinats" class="md-nav__button md-logo" aria-label="OPF in Rectangular Coordinats" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
 
     </a>
-    OPF in Polarcoordinats
+    OPF in Rectangular Coordinats
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -261,7 +261,41 @@
 
   <h1>Problem Formulation</h1>
 
-
+<p>Here, we represent the PF problem in rectangular voltage coordinates, which is the classic representation.
+$$
+V_i = U_i+\textrm j W_i
+$$<br />
+and the knote admittance is expressed in rectangular coordinates:
+$$Y_{ik} = G_{ik}+\textrm{j}B_{ik}$$
+For the admittance matrix elements, rectangular coordinates are typically favored because they facilitate the use of certain approximations in fast-decoupled solution methods </p>
+<p>The objective in OPF is to minimize the total cost of electricity generation while maintaining the electric power system within safe operating limits.<br />
+The mathematical formulation is shown as follows: 
+$$\min {f}=\min {\sum_{i\in G}^{}(c_{1,i}\cdot P_i+c_{2,i}\cdot P_i^2)}$$
+$\textrm{s.t.}$
+$$
+P_i(U,W)=C_g\cdot P_g-P_d\qquad \forall i \in \mathbf{N}\notag
+$$
+$$
+Q_i(U,W)=C_g\cdot Q_g-Q_d\qquad \forall i \in \mathbf{N}\notag
+$$
+$$
+P_i^{G,\min}\le P_i^{G}\le P_i^{G,\max}\qquad \forall i \in \mathbf{G}\notag
+$$
+$$
+Q_i^{G,\min}\le Q_i^{G}\le Q_i^{G,\max}\qquad \forall i \in \mathbf{G}\notag
+$$
+$$
+{V^{\textrm{min}}_i}^2\le U_i^2+W_i^2 \le {V^{\textrm{max}}_i}^2\qquad \forall i \in \mathbf{N}\notag
+$$
+The first two equations are the PF equations. The remaining constraints represent bounds on the system voltages and powers. Typically, load real and reactive power are fixed while generator real and reactive power are control variables subject to minimum and maximum limits. The voltage magnitude and angle at the system slack bus are also fixed, usually to $U_n=1, W_n=0$.</p>
+<p>OPF formulations may include branch current limits, which is omitted in this example.</p>
+<p>expressing voltage in rectangular coordinates eliminates trigonometric functions from the PF equations. The resulting PF Equations are quadratic, which presents several advantages:</p>
+<ul>
+<li>The elimination of trigonometric functions speeds evaluation of the equations.</li>
+<li>The second order Taylor series expansion of a quadratic function is exact; this yields an efficiency advantage in higher-order interior-point algorithms for OPF.</li>
+<li>The Hessian matrix for a quadratic function is constant and must be evaluated only once. This simplifies the application of Newton’s method to the Karush–KuhnTucker (KKT) conditions of the OPF formulation.</li>
+<li>If the side constraints are also quadratic, then the entire OPF problem becomes a Quadratically Constrained Program, although it remains non-convex. This enables the use of specialized solution algorithms.</li>
+</ul>
 
 
 
@@ -305,7 +339,15 @@
       <script src="../assets/javascripts/bundle.220ee61c.min.js"></script>
       
         
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+          <script src="../javascripts/katex.js"></script>
+        
+      
+        
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js"></script>
+        
+      
+        
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js"></script>
         
       
     

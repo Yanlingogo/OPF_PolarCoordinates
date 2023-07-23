@@ -6,13 +6,13 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Documentation for Polar coordinates">
+        <meta name="description" content="Documentation for rectangular coordinates">
       
       
         <meta name="author" content="Yanlin Jiang">
       
       
-        <link rel="canonical" href="https://kit-iai.github.io/Polar/sensitivity/">
+        <link rel="canonical" href="https://kit-iai.github.io/rec/sensitivity/">
       
       
         <link rel="prev" href="../run%20OPF/">
@@ -23,7 +23,7 @@
     
     
       
-        <title>Sensitivity - OPF in Polarcoordinats</title>
+        <title>Sensitivity - OPF in Rectangular Coordinats</title>
       
     
     
@@ -43,7 +43,7 @@
       
     
     
-      <link rel="stylesheet" href="../extra.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css">
     
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -83,7 +83,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="OPF in Polarcoordinats" class="md-header__button md-logo" aria-label="OPF in Polarcoordinats" data-md-component="logo">
+    <a href=".." title="OPF in Rectangular Coordinats" class="md-header__button md-logo" aria-label="OPF in Rectangular Coordinats" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -96,7 +96,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            OPF in Polarcoordinats
+            OPF in Rectangular Coordinats
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -169,13 +169,13 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="OPF in Polarcoordinats" class="md-nav__button md-logo" aria-label="OPF in Polarcoordinats" data-md-component="logo">
+    <a href=".." title="OPF in Rectangular Coordinats" class="md-nav__button md-logo" aria-label="OPF in Rectangular Coordinats" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
 
     </a>
-    OPF in Polarcoordinats
+    OPF in Rectangular Coordinats
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -269,64 +269,68 @@
 
 
 <h1 id="sensitivities">Sensitivities</h1>
+<p>This section shows how the power flow sensitivities can be used.</p>
+<p>All gradient-based optimization methods require sensitivities.
+By <em>sensitivities</em> we mean one (or all) of the following:</p>
+<ul>
+<li>gradients,</li>
+<li>Jacobians, and/or</li>
+<li>Hessians.</li>
+</ul>
 <h1 id="computation">Computation</h1>
-<table>
-<thead>
-<tr>
-<th>Syntax</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Header</td>
-<td>Title</td>
-</tr>
-<tr>
-<td>Paragraph</td>
-<td>Text</td>
-</tr>
-<tr>
-<td>Here&rsquo;s a simple footnote,[^1] and here&rsquo;s a longer one.[^bignote]</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p>[^1]: This is the first footnote.</p>
-<p>[^bignote]: Here&rsquo;s one with multiple paragraphs and code.</p>
-<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nv">Indent</span><span class="w"> </span><span class="nv">paragraphs</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span><span class="k">include</span><span class="w"> </span><span class="nv">them</span><span class="w"> </span><span class="nv">in</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">footnote</span>.
-
-`{<span class="w"> </span><span class="nv">my</span><span class="w"> </span><span class="nv">code</span><span class="w"> </span>}`
-
-<span class="nv">Add</span><span class="w"> </span><span class="nv">as</span><span class="w"> </span><span class="nv">many</span><span class="w"> </span><span class="nv">paragraphs</span><span class="w"> </span><span class="nv">as</span><span class="w"> </span><span class="nv">you</span><span class="w"> </span><span class="nv">like</span>.
-</code></pre></div></td></tr></table></div>
-
-<table>
-<thead>
-<tr>
-<th align="left">Name</th>
-<th align="left">Function</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="left">Case file generator</td>
-<td align="left">Merge several case files &amp; connection information</td>
-</tr>
-<tr>
-<td align="left">Case file splitter</td>
-<td align="left">Adjust case files to account for core and copy nodes</td>
-</tr>
-<tr>
-<td align="left">Case file parser</td>
-<td align="left">Generate mathematical problem formulation</td>
-</tr>
-</tbody>
-</table>
+<h2 id="by-casadi">By CasADi</h2>
+<p>Casadi has tools available to calculate the Jacobian and Hessian: </p>
+<pre><code class="language-matlab">jac_casadi  = jacobian(constraint,x_SX);
+hess_casadi = hessian(objective+lam_SX'*constraint, x_SX);
+sens = Function('sens',{x_SX, lam_SX},{jac_casadi,hess_casadi}); 
+</code></pre>
+<h2 id="by-created-function">By Created function</h2>
+<p>We can also write the calculation formulas of jacobian and hessian by ourselves, and compare whether it is consistent with the results calculated directly by CasADi.</p>
+<h3 id="jacobian">Jacobian</h3>
+<ul>
+<li>Jacobian of Voltage(Inequality): Because the voltage constraint is for the square of the magnitude.
+$$J_{\textrm{voltage}}=[2U,2W,zeros_{14 \times10} ]$$</li>
+<li>Jacobian of Flow equation(equality): First, there is a slack node in the example, and the slack node is added to the Jacobian. $P_u$ represents the derivative of power with respect to the u,$Q_u,P_w,Q_w$ can be deduced by analogy. 
+The calculation of the derivative of power to power is very simple and directly extended to the Jacobian</li>
+</ul>
+<div style="display: block;">
+$$
+\begin{align}
+    \frac{\partial P^S}{\partial u} &= \left[e\right]+\left[u\right] \cdot G + \left[w\right] \cdot B\notag\\
+    \frac{\partial Q^S}{\partial u}& = -\left[f\right] + \left[w\right] \cdot G - \left[u\right] \cdot B\notag\\
+    \frac{\partial P^S}{\partial w} &= \left[f\right]+\left[w\right] \cdot G - \left[u\right] \cdot B\notag\\
+    \frac{\partial Q^S}{\partial w} &= \left[e\right] - \left[u\right] \cdot G - \left[w\right] \cdot B\notag
+\end{align} 
+$$
+</div>
+<ul>
+<li>Branch limit: </li>
+</ul>
+<h3 id="hessian">Hessian</h3>
+<ul>
+<li>The hessian of $J+\sum \lambda_i \cdot c_i$ is calculated as follows:</li>
+</ul>
+<div style="display: block;">
+    $$
+    \begin{aligned}
+        S_{xx} &= \begin{bmatrix}
+                S_{uu} & S_{uw} & 0 & 0 \\
+                S_{wu} & S_{ww} & 0 & 0 \\
+                0 & 0 & 0 & 0 \\
+                0 & 0 & 0 & 0 \\
+             \end{bmatrix}
+    \end{aligned}
+    $$
+    $$
+    \begin{align}
+    S_{uu}&=[\lambda_p] \cdot G + G^\top\cdot[\lambda_p]-[\lambda_q] \cdot B + B^\top\cdot[\lambda_q] \notag \\
+    S_{uw}&=B^\top \cdot[\lambda_p] - [\lambda_p]\cdot B+ G^\top\cdot[\lambda_q]-[\lambda_q]\cdot G\notag \\
+    \end{align}
+    $$
+</div>
+<ul>
+<li>Branch limit: </li>
+</ul>
 
 
 
@@ -370,7 +374,15 @@
       <script src="../assets/javascripts/bundle.220ee61c.min.js"></script>
       
         
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+          <script src="../javascripts/katex.js"></script>
+        
+      
+        
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js"></script>
+        
+      
+        
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js"></script>
         
       
     
